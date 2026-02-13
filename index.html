@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaishnavi Sonawane | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Vaishnavi Sonawane.</div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Hello, I'm Vaishnavi Sonawane</h1>
+        <p>UI/UX Designer & Web Developer</p>
+        <a href="#contact" class="btn">Hire Me</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <div class="profile-pic">😊</div>
+            </div>
+            <div class="about-text">
+                <p>I am a BCA graduate with a passion for designing and building beautiful, user-friendly websites.</p>
+                <p>I specialize in UI/UX design and frontend development, creating responsive and interactive web experiences.</p>
+                <p>I enjoy learning new technologies and continuously improving my design and coding skills.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>My Skills</h2>
+        <div class="skills-container">
+            <div class="skill-card" data-skill="90">
+                <h3>HTML5</h3>
+                <p>Semantic and responsive web structure.</p>
+                <div class="skill-bar"><div class="skill-progress"></div></div>
+            </div>
+            <div class="skill-card" data-skill="85">
+                <h3>CSS3</h3>
+                <p>Styling with Flexbox, Grid, and Animations.</p>
+                <div class="skill-bar"><div class="skill-progress"></div></div>
+            </div>
+            <div class="skill-card" data-skill="70">
+                <h3>JavaScript</h3>
+                <p>Basic interactivity and DOM manipulation.</p>
+                <div class="skill-bar"><div class="skill-progress"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">💻</div>
+                <div class="project-info">
+                    <h3>Portfolio Website</h3>
+                    <p>Responsive personal portfolio built with HTML, CSS & JS showcasing skills and projects.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">📱</div>
+                <div class="project-info">
+                    <h3>UI/UX Mobile App</h3>
+                    <p>Mobile app design case study focusing on user experience and interface design.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">🎨</div>
+                <div class="project-info">
+                    <h3>Design System</h3>
+                    <p>Created a consistent design system for web and mobile applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Vaishnavi Sonawane. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+            });
+        });
+
+        // Scroll progress indicator
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollIndicator.style.width = scrollPercent + '%';
+        });
+
+        // Animate skill bars
+        const skillCards = document.querySelectorAll('.skill-card');
+        function animateSkills() {
+            skillCards.forEach(card => {
+                const skillTop = card.getBoundingClientRect().top;
+                if(skillTop < window.innerHeight - 50){
+                    const progress = card.querySelector('.skill-progress');
+                    const skillLevel = card.getAttribute('data-skill');
+                    progress.style.width = skillLevel + '%';
+                }
+            });
+        }
+        window.addEventListener('scroll', animateSkills);
+        window.addEventListener('load', animateSkills);
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', e => {
+            e.preventDefault();
+            alert(`Thank you ${document.getElementById('name').value}! Your message has been sent.`);
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
